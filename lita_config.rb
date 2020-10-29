@@ -1,7 +1,7 @@
 Lita.configure do |config|
   # The name your robot will use.
   config.robot.name = "Lita"
-
+  
   # The locale code for the language to use.
   # config.robot.locale = :en
 
@@ -17,8 +17,14 @@ Lita.configure do |config|
 
   # The adapter you want to connect with. Make sure you've added the
   # appropriate gem to the Gemfile.
-  config.robot.adapter = :shell
-
+  # heroku uses a RACK_ENV of 'production' by default
+  if ENV['RACK_ENV'] == 'production' config.robot.adapter = :slack
+  	config.redis[:url] = ENV.fetch('REDIS_URL')
+  else
+	config.robot.adapter = :shell
+  end
+  # slack adapter demands a value even in dev when we aren't using it... 
+  config.adapters.slack.token = ENV.fetch('SLACK_TOKEN', '')
   ## Example: Set options for the chosen adapter.
   # config.adapter.username = "myname"
   # config.adapter.password = "secret"
