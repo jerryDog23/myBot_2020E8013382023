@@ -25,14 +25,15 @@ Lita.configure do |config|
 	config.robot.adapter = :shell
   end
   # slack adapter demands a value even in dev when we aren't using it... 
-  config.adapters.slack.token = ENV.fetch('SLACK_TOKEN', '')
+#   config.adapters.slack.token = ENV.fetch('SLACK_TOKEN', '')
+  config.adapters.slack.token = "xoxb-1468758027297-1468522978004-yRHd67fv7zulLBiG4Hrddv7C"
   ## Example: Set options for the chosen adapter.
   # config.adapter.username = "myname"
   # config.adapter.password = "secret"
-  Lita.configure do |config|
-	config.robot.adapter = :slack
-	config.adapters.slack.token = "xoxb-1468758027297-1468522978004-yRHd67fv7zulLBiG4Hrddv7C"
-  end
+#   Lita.configure do |config|
+# 	config.robot.adapter = :slack
+# 	config.adapters.slack.token = "xoxb-1468758027297-1468522978004-yRHd67fv7zulLBiG4Hrddv7C"
+#   end
   ## Example: Set options for the Redis connection.
   # config.redis.host = "127.0.0.1"
   # config.redis.port = 1234
